@@ -1,13 +1,13 @@
-CREATE TABLE pontos (
+CREATE TABLE FeiraDeCiencias  (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
-    tipo TEXT,          -- 'estande', 'banheiro', 'ponto de energia'
+    tipo TEXT,  
     tem_tomada BOOLEAN,
     coord_x REAL,
     coord_y REAL
 );
 
-INSERT INTO pontos (nome, tipo, tem _ tomada, coord x, coord _ y) VALUES
+INSERT INTO pontos (nome, tipo, tem_tomada, coord_x, coord_y) VALUES
 ('Estande de Biologia', 'estande', 1, 10, 15),
 ('Estande de Física', 'estande', 0, 20, 25),
 ('Banheiro Principal', 'banheiro', 0, 5, 5),
@@ -19,9 +19,9 @@ FROM pontos
 WHERE tem_tomada = 1;
 
 SELECT nome, tipo, coord_x, coord_y,
-       ROUND(SQRT( (coord_x - 10)*(coord_x - 10) + (coord_y - 10)*(coord _ y - 10) ), 2) AS distancia
+       ROUND(SQRT((coord_x - 10)*(coord_x - 10) + (coord_y - 10)*(coord_y - 10)), 2) AS distancia
 FROM pontos
 WHERE tem_tomada = 1
-  AND distances <= 50
+  AND distancia <= 50
 ORDER BY distancia ASC
 LIMIT 1;
