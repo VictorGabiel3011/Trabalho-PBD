@@ -1,4 +1,5 @@
-CREATE TABLE FeiraDeCiencias  (
+DROP TABLE IF EXISTS FeiraDeCiencias;
+CREATE TABLE IF NOT EXISTS FeiraDeCiencias  (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
     tipo TEXT,  
@@ -7,21 +8,23 @@ CREATE TABLE FeiraDeCiencias  (
     coord_y REAL
 );
 
-INSERT INTO pontos (nome, tipo, tem_tomada, coord_x, coord_y) VALUES
-('Estande de Biologia', 'estande', 1, 10, 15),
-('Estande de Física', 'estande', 0, 20, 25),
-('Banheiro Principal', 'banheiro', 0, 5, 5),
-('Ponto de Carga 1', 'energia', 1, 8, 12),
-('Estande de Química', 'estande', 1, 30, 18);
+INSERT INTO FeiraDeCiencias (nome, tipo, tem_tomada, coord_x, coord_z coord_y) VALUES
+('Entrada da escola', 'entrada', 0, 0, 0, 0),
+('escada', 'escada', 0, 5, 5, 10), 
+('Estande de Biologia', 'estande', 1, 15, 20, 15),
+('Estande de Física', 'estande', 1, 20, 16, 25),
+('Banheiro Principal', 'banheiro', 1, 10, 30, 5),
+('Estande de Química', 'estande', 1, 30, 10, 18);
 
-SELECT nome, tipo, coord_x, coord_y
-FROM pontos
-WHERE tem_tomada = 1;
+SELECT nome, tipo, tem_tomada, coord_x, coord_y
+FROM FeiraDeCiencias
+WHERE tem_tomada = 0 OR 1;
 
-SELECT nome, tipo, coord_x, coord_y,
-       ROUND(SQRT((coord_x - 10)*(coord_x - 10) + (coord_y - 10)*(coord_y - 10)), 2) AS distancia
-FROM pontos
+SELECT nome, tipo, tem_tomada,coord_x, coord_z coord_y,
+       ROUND(SQRT((coord_x - 10)*(coord_x - 10) + (coord_z- 10)*(coord_y - 10)), 2) AS distancia
+FROM FeiraDeCiencias
 WHERE tem_tomada = 1
-  AND distancia <= 50
+  AND distancia <= 20
+ 
 ORDER BY distancia ASC
 LIMIT 1;
