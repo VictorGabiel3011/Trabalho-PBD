@@ -3,28 +3,28 @@ CREATE TABLE IF NOT EXISTS FeiraDeCiencias  (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
     tipo TEXT,  
-    tem_tomada BOOLEAN,
+    quantas_tomadas BOOLEAN,
     coord_x REAL,
     coord_y REAL,
     coord_z REAL
 );
 
-INSERT INTO FeiraDeCiencias (nome, tipo, tem_tomada, coord_z, coord_x,coord_y) VALUES
-('➡️Entrada da escola', 'entrada', 0, 0, 0, 0),
+INSERT INTO FeiraDeCiencias (nome, tipo, quantas_tomadas, coord_z, coord_x,coord_y) VALUES
+('➡️Entrada da escola', 'entrada/saída', 0, 0, 0, 0),
 ('➡️escada', 'escada', 0, 0, 5, 0), 
 ('➡️Estande de Biologia', 'estande', 1, 0, 20, 9),
 ('➡️Estande de Física', 'estande', 1, 0, 16, 9),
 ('➡️Banheiro Principal', 'banheiro', 1, 0, 30, 9),
 ('➡️Estande de Química', 'estande', 1, 0, 10, 9);
 
-SELECT nome, tipo, tem_tomada, coord_z, coord_x, coord_y
+SELECT nome, tipo, quantas_tomadas, coord_z, coord_x, coord_y
 FROM FeiraDeCiencias
-WHERE tem_tomada = 0 OR 1;
+WHERE quantas_tomadas = 0 OR 1;
 
-SELECT nome, tipo, tem_tomada, coord_z, coord_x, coord_y,
+SELECT nome, tipo, quantas_tomadas, coord_z, coord_x, coord_y,
        ROUND(SQRT((coord_x - 10)*(coord_x - 10) + (coord_y- 10)*(coord_y - 10)), 2) AS distancia
 FROM FeiraDeCiencias
-WHERE tem_tomada = 1
+WHERE quantas_tomadas = 1
   AND distancia <= 20
  
 ORDER BY distancia ASC
